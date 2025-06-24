@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+<path d="
+  M0 200
+  L200 0
+  L400 200
+  L200 400
+  Z
+" fill-rule="nonzero"/>
+<path d="
+  M0 200
+  L200 0
+  L400 200
+  L200 400
+  Z
+"
+  transform-origin="center"
+  transform="rotate(45)"
+  fill-rule="nonzero"/>
+</svg>

@@ -91,10 +91,8 @@ a {
         &:before {
             position:absolute;
             content:"";
-            top:10px;
+            inset:10px;
             left:20px;
-            right:10px;
-            bottom:10px;
             border-inline-start: 1px solid white;
         }
         & h2 {
@@ -210,8 +208,7 @@ main {
             }
             & img {
                 position: absolute;
-                left:0;
-                top:0;
+                inset:0;
                 height:100%;
                 object-position:center top;
                 object-fit: cover;
@@ -236,13 +233,13 @@ main {
                         font-size:0.5em;
                     }
                 }
+                &:focus-visible {
+                    text-decoration:underline;
+                }
                 &>.archbox {
                     /* content: ""; */
                     position: absolute;
-                    top: 0px;
-                    left:0px;
-                    right:0px;
-                    bottom:0px;
+                    inset:0;
                     /* filter: invert(11%) sepia(92%); */
                     /* z-index:90; */
                     background-color:black;
@@ -256,10 +253,7 @@ main {
                 /*&:after {
                     content:"";
                     position: absolute;
-                    top:0;
-                    bottom:0;
-                    right:0;
-                    left:0;
+                    inset:0;
                     background-image:var(--tallbgimggradient);
                     mix-blend-mode:color;
                 }*/
@@ -297,7 +291,7 @@ main {
                 }
                 transition: all 0.5s;
             }
-            &:hover > ul, &:focus > ul {
+            &:has(:hover) > ul, &:has(:focus-visible)> ul {
                 visibility:initial;
                 max-height:200px;
                 &>li{
@@ -317,6 +311,7 @@ main {
         overflow:hidden;
         &>li {
             font-size:1.2em;
+            position:relative;
             flex:1;
             text-align: center;
             padding: 1em;
@@ -330,9 +325,21 @@ main {
             &:nth-child(3) {
                 background:rgb(var(--indiancolor));
             }
+            &:focus-visible:after {
+                content:"";
+                border:1px solid orange;
+                position:absolute;
+                inset:0;
+            }
             &>ul {
                 list-style:none;
+                text-decoration:none;
+                height: 0%;
+                max-height:0px;
+                transition:max-height 0.5s, visibility 0.6s;
                 &>li {
+                    max-height:0px;
+                    transition: all 0.5s;
                     text-transform: initial;
                     font-size: 1rem;
                     padding-block-start: 1em;
@@ -345,16 +352,7 @@ main {
                 }
             }
         }
-        &>li>ul {
-            height: 0%;
-            max-height:0px;
-            transition:max-height 0.5s, visibility 0.6s;
-            &>li {
-                max-height:0px;
-                transition: all 0.5s;
-            }
-        }
-        &:hover, &:focus {
+        &:has(:hover), &:has(:focus-visible) {
             &>li>ul {
                 visibility:initial;
                 height:100%;
